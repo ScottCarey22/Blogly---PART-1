@@ -1,0 +1,27 @@
+{% extends 'list.html' %}
+
+{% block title %}<h1><b>Blogly</b></h1>{% endblock %}
+
+{% block content %}
+
+<h2>Blogly Recent Posts</h2>
+
+{% for post in posts %}
+<h4 class="mt-4">
+    <a href="/posts/{{ post.id }}">{{ post.title }}</a>
+</h4>
+<p>{{ posts.content }}</p>
+<p>
+    <small>By {{ post.user.full_name }} on {{ post.show_date }}</small>
+</p>
+{% if post.tags %}
+<p>
+    <b>Tags:</b>
+    {% for tag in post.tags %}
+    <a href="/tag/{{ tag.id }}" class="badge badge-pill badge-info">{{ tag.name }}</a>
+    {% endfor %}
+</p>
+{% endif %}
+{% endfor %}
+
+{% endblock %}
